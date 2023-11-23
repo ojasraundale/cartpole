@@ -1,0 +1,19 @@
+import numpy as np
+import random
+import CartPole
+from CartPole import RIGHT, LEFT    # Importing Actions
+from Agent import Agent
+
+
+
+class AgentHandler():
+    """
+    Class for handling all the agents for the simulation
+    
+    """
+    
+    def __init__(self, n_pert, sigma) -> None:
+        self.n_pert = n_pert
+        
+        
+    
