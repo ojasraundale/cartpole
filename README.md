@@ -6,7 +6,7 @@ Need python on your machine to run this code.
 
 To run the program, enter the following commands: 
 
-$python Simulation.py 
+``python Simulation.py``
 
 Simulation.py's main function can be edited to change the hyperparameters. It makes a simple call: 
 Simulation(M = 8, n_pert=200, sigma=0.2, alpha=0.002, n_episodes=1, iterations= 500)
