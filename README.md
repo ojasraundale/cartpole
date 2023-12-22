@@ -29,7 +29,7 @@ Following are the limits I chose for my environment. The simulation ends wheneve
 
 ### Action Space and State Update: 
 The agent can take two actions: Left or Right. Each corresponds to either a force of -10 Newtons or +10 newtons. 
-The game state updates at every 0.02 seconds. The particular physics are as follows: 
+The game state updates at every 0.02 seconds ($\tau$). The particular physics are as follows: 
 
 $x_{t+1} \gets x_t + \tau v_t $
 
@@ -40,6 +40,7 @@ $\omega_{t+1} \gets \omega_t + \tau  \dot \omega_t$
 $\dot \omega_{t+1} \gets \dot \omega_t + \tau  c$
 
 Where, 
+
 $b = \frac{F + m_p l \dot\omega_t^2\sin(\omega_t)}{m_t}$
 
 $c = \frac{g \sin(\omega_t) - cos(\omega_t) b}{l \Big( \frac{4}{3} - \frac{m_p \cos(\omega_t)^2}{m_t} \Big)}$
@@ -48,10 +49,19 @@ $d = b - \frac{m_p l c \cos(\omega_t)}{m_t}$
 
 
 
-
-
 ## Fourier State Vectors and the agent
-The 4-length 
+[Konidaris](https://people.cs.umass.edu/~pthomas/papers/Konidaris2011a.pdf)'s Fourier basis technique is used to construct state features out of the 4-length state vector. However we don't use it to approximate the value function but rather just use it to construct simple parametrized policies. 
+
+The policy is simple linear function over the fourier state vectors. If the weighted sum is greater than zero then the action right is chosen, otherwise the action left is chosen. 
+
+Fourier state vector $\phi(s)$: 
+
+$\phi(s) = [1, \cos(1 \pi x), \cos(2 \pi x), \ldots, \cos(M \pi x), \cos(1 \pi v), \cos(2 \pi v), \ldots, \cos(M \pi v), \cos(1 \pi \omega), \cos(2 \pi \omega), \ldots, \cos(M \pi \omega), \cos(1 \pi \dot{\omega}), \cos(2 \pi \dot{\omega}), \ldots, \cos(M \pi \dot{\omega})]^\top.$
+
+
+## Evolution Strategy for Black Box Optimization methods. 
+
+
 
 
 
