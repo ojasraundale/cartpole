@@ -31,9 +31,12 @@ Following are the limits I chose for my environment. The simulation ends wheneve
 The agent can take two actions: Left or Right. Each corresponds to either a force of -10 Newtons or +10 newtons. 
 The game state updates at every 0.02 seconds. The particular physics are as follows: 
 
-$x_{t+1} \gets x_t + \tau v_t \\$
-$v_{t+1} \gets v_t + \tau \, d \\$
-$\omega_{t+1} \gets \omega_t + \tau \, \dot \omega_t \\$
+$x_{t+1} \gets x_t + \tau v_t $
+
+$v_{t+1} \gets v_t + \tau \, d $
+
+$\omega_{t+1} \gets \omega_t + \tau \, \dot \omega_t$
+
 $\dot \omega_{t+1} \gets \dot \omega_t + \tau \, c$
 
 Where, 
