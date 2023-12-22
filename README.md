@@ -4,8 +4,36 @@ Implementation of Black Box Optimization methods and using Fourier State Vectors
 ## About the domain
 This a classic Reinforcement Learning domain. [Gymnasium](https://gymnasium.farama.org/ "Gymnasium's Homepage") already provides an excellent API for running environments. However I decided to create my own environment on Python for the purpose of the algorithm's implementation, just because it was fun! [CartPole.py](/CartPole.py) has my own implementation of the Cartpole environment. 
 
-## Fourier State Vectors
-The state of a cartpole environment is determined by 4 state vectors: $x$ (Cart Position), $v$ (Cart Velocity), $w$ (Pole Angle w.r.t to vertical), $\dot \omega$ ()
+
+## Fourier State Vectors and the agent
+
+### State Space of Cartpole
+The state of a cartpole environment is determined by 4-length state vectors: 
+
+$x$ (Cart Position), 
+
+$v$ (Cart Velocity), 
+
+$\omega$ (Pole Angle w.r.t to vertical), 
+
+$\dot \omega$ (Angular velocity of the pole). 
+
+Following are the limits I chose for my environment. The simulation ends whenever the cartpole moves out of the limits. 
+
+| Num | Observation              | Min    | Max    |
+| --- | ------------------------ | ------ | ------ |
+| 0   | Cart Position            | -2.4   | 2/4    |
+| 1   | Cart Velocity            | -Inf   | Inf    |
+| 2   | Pole Angle               | $-\pi/15$ | $-\pi/15$ |
+| 3   | Pole Angular Velocity    | -Inf   | Inf    |
+
+
+
+### Fourier State Vectors and the agent
+The 4-length 
+
+
+
 
 
 
