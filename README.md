@@ -49,7 +49,7 @@ $d = b - \frac{m_p l c \cos(\omega_t)}{m_t}$
 
 
 
-## Fourier State Vectors and the agent
+## Fourier State Vectors and the agent's policy
 [Konidaris](https://people.cs.umass.edu/~pthomas/papers/Konidaris2011a.pdf)'s Fourier basis technique is used to construct state features out of the 4-length state vector. However we don't use it to approximate the value function but rather just use it to construct simple parametrized policies. 
 
 The policy is simple linear function over the fourier state vectors. If the weighted sum is greater than zero then the action right is chosen, otherwise the action left is chosen. 
@@ -58,9 +58,18 @@ Fourier state vector $\phi(s)$:
 
 $\phi(s) = [1, \cos(1 \pi x), \cos(2 \pi x), \ldots, \cos(M \pi x), \cos(1 \pi v), \cos(2 \pi v), \ldots, \cos(M \pi v), \cos(1 \pi \omega), \cos(2 \pi \omega), \ldots, \cos(M \pi \omega), \cos(1 \pi \dot{\omega}), \cos(2 \pi \dot{\omega}), \ldots, \cos(M \pi \dot{\omega})]^\top.$
 
+Where $M$ is the order of the fourier transform. 
+
+A policy parameter $\theta$ is chosen. 
+
+If $\phi(s)^\top \theta$ > 0: Action RIGHT is chosen. 
+
+Else: Action LEFT is chosen
+
+
 
 ## Evolution Strategy for Black Box Optimization methods. 
-
+[Salimans et al.](https://arxiv.org/abs/1703.03864)'s ES method was used to generate new policies and evaluate them. It starts with a policy $\theta_0 \in \mathbb{R}^n$ with random parameters as an initial \textit{guess}. It then repeatedly tweaks the guess a bit, randomly; and moves the current guess slightly towards whatever tweaks worked better. Concretely, at each episode $t$, the algorithm generates many (say, \textit{nPerturbations}$=20$) random-noise perturbation vectors $\epsilon_i$. These are then used to generate a population of perturbed policies, each of which is only slightly different than the current one. The parameters of each perturbed policy are $\theta_t + \sigma \epsilon_i$, where $\sigma$ is an exploration parameter. The algorithm evaluates each of the perturbed policies by running it in the environment $N$ times, using the function \texttt{estimate\_J}. This produces the corresponding policy performance evaluations, $J_i$. The updated policy parameter vector $\theta_{t+1}$, then, is the weighted sum of the \textit{nPerturbations} random-noise vectors, where each weight is proportional to the performance $J_i$ of the corresponding perturbed policy.
 
 
 
