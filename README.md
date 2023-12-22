@@ -18,7 +18,7 @@ $\omega$ (Pole Angle w.r.t to vertical),
 
 $\dot \omega$ (Angular velocity of the pole). 
 
-Following are the limits I chose for my environment. The simulation ends whenever the cartpole moves out of the limits. 
+Following are the limits I chose for my environment. The simulation ends whenever the cartpole moves out of the limits or if more than 500 timestamps have crossed. 
 
 | Num | Observation              | Min    | Max    |
 | --- | ------------------------ | ------ | ------ |
@@ -69,17 +69,12 @@ Else: Action LEFT is chosen
 
 
 ## Evolution Strategy for Black Box Optimization methods. 
-[Salimans et al.](https://arxiv.org/abs/1703.03864)'s ES method was used to generate new policies and evaluate them. It starts with a policy $\theta_0 \in \mathbb{R}^n$ with random parameters as an initial \textit{guess}. It then repeatedly tweaks the guess a bit, randomly; and moves the current guess slightly towards whatever tweaks worked better. Concretely, at each episode $t$, the algorithm generates many (say, \textit{nPerturbations}$=20$) random-noise perturbation vectors $\epsilon_i$. These are then used to generate a population of perturbed policies, each of which is only slightly different than the current one. The parameters of each perturbed policy are $\theta_t + \sigma \epsilon_i$, where $\sigma$ is an exploration parameter. The algorithm evaluates each of the perturbed policies by running it in the environment $N$ times, using the function \texttt{estimate\_J}. This produces the corresponding policy performance evaluations, $J_i$. The updated policy parameter vector $\theta_{t+1}$, then, is the weighted sum of the \textit{nPerturbations} random-noise vectors, where each weight is proportional to the performance $J_i$ of the corresponding perturbed policy.
+[Salimans et al.](https://arxiv.org/abs/1703.03864)'s ES method was used to generate new policies and evaluate them. It starts with a policy $\theta_0 \in \mathbb{R}^n$ with random parameters as an initial \textit{guess}. It then repeatedly tweaks the guess a bit, randomly; and moves the current guess slightly towards whatever tweaks worked better. Concretely, at each episode $t$, the algorithm generates many (say *nPerturbations* $=20$) random-noise perturbation vectors $\epsilon_i$. These are then used to generate a population of perturbed policies, each of which is only slightly different than the current one. The parameters of each perturbed policy are $\theta_t + \sigma \epsilon_i$, where $\sigma$ is an exploration parameter. The algorithm evaluates each of the perturbed policies by running it in the environment $N$ times, using the function *estimate\_J*. This produces the corresponding policy performance evaluations, $J_i$. The updated policy parameter vector $\theta_{t+1}$, then, is the weighted sum of the *nPerturbations* random-noise vectors, where each weight is proportional to the performance $J_i$ of the corresponding perturbed policy. Thus the perturbed policies with higher performances have higher weights. 
 
 
+## Usage
 
-
-
-
-
-Need python on your machine to run this code.
-
-To run the program, enter the following commands: 
+Need python on your machine to run this code. To run the program, simply run: 
 
 ``python Simulation.py``
 
@@ -89,6 +84,20 @@ Simulation(M = 8, n_pert=200, sigma=0.2, alpha=0.002, n_episodes=1, iterations= 
 where the arguments are the hyperparameters. 
 
 
-CartPole.py implements a class to simulate the CartPole environment. 
-Agent.py implements the policy and gets an action based on theta values. It has other custom actions as well. 
-Simulation.py runs the episodes, J_estimates, and the ES algorithm
+## Results
+Most of the experiments can be found in [Experiments.ipynb](/Experiments.ipynb). The following parameters gave the best resulting RL agent consitently:
+
+$M = 8, n_{pert} = 200, \sigma = 1, \alpha = 0.01, N = 1$
+
+Folling plot showcases this by running the training algorithm 20 times and plotting the standard deviation:
+
+![Plot](<nruns 20 M 8, n_pert 200, sigma 1, alpha 0.01.jpg>)
+
+
+I also found an agent with just $M = 1$ that ran for more than 10 million timestamps. Following are the $\theta$ parameters: 
+
+$[-0.06380776, -0.48614546,  1.04039523, -1.76673265, -1.13802136]$
+
+
+## Further Work
+I plan to make a game that visually showcases the simulation and the best agent I found. Even humans could play this version of the cartpole and compare their performance with the best found AI. 
