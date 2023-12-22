@@ -79,7 +79,8 @@ Need python on your machine to run this code. To run the program, simply run:
 ``python Simulation.py``
 
 Simulation.py's main function can be edited to change the hyperparameters. It makes a simple call: 
-Simulation(M = 8, n_pert=200, sigma=0.2, alpha=0.002, n_episodes=1, iterations= 500)
+
+`Simulation(M = 8, n_pert=200, sigma=0.2, alpha=0.002, n_episodes=1, iterations= 500)`
 
 where the arguments are the hyperparameters. 
 
@@ -100,4 +101,6 @@ $[-0.06380776, -0.48614546,  1.04039523, -1.76673265, -1.13802136]$
 
 
 ## Further Work
-I plan to make a game that visually showcases the simulation and the best agent I found. Even humans could play this version of the cartpole and compare their performance with the best found AI. 
+I plan to make a game that visually showcases the simulation and the best agent I found. Even humans could play this version of the cartpole and compare their performance with the best found AI. This is a WIP and will be completed as get comfortable with PyGame. 
+
+
