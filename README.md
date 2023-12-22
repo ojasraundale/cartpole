@@ -1,5 +1,12 @@
 # cartpole
-Implementation of Black Box Optimization methods on the Cartpole Domain
+Implementation of Black Box Optimization methods and using Fourier State Vectors on the Cartpole Domain. 
+
+## About the domain
+This a classic Reinforcement Learning domain. [Gymnasium](https://gymnasium.farama.org/ "Gymnasium's Homepage") already provides an excellent API for running environments. However I decided to create my own environment on Python for the purpose of the algorithm's implementation, just because it was fun! [CartPole.py](/CartPole.py) has my own implementation of the Cartpole environment. 
+
+## Fourier State Vectors
+The state of a cartpole environment is determined by 4 state vectors: $x$ (Cart Position), $v$ (Cart Velocity), $w$ (Pole Angle w.r.t to vertical), \dot \omega ()
+
 
 
 Need python on your machine to run this code.
